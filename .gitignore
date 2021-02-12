@@ -3,3 +3,4 @@
 .reminders
 generate_secret.py
 *__pycache__/
+*.lnk
