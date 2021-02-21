@@ -30,6 +30,9 @@ def register(request):
 
             return redirect('login')
 
+    for field in form.fields:
+        print(field)
+
     context = {'form': form}
     return render(request, 'tasker/register.html', context)
 

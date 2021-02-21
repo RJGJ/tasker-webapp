@@ -1,11 +1,46 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Register</title>
-</head>
-<body>
+{% extends "base.html" %}
 
-<h1>Register</h1>
+{% block title %} Tasker | Register {% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row content">
+        <div class="col-md-6">
+            <img class="img-responsive" src="https://upload.wikimedia.org/wikipedia/en/e/e2/University_of_Perpetual_Help_System_Logo.png" class="img-fluid" alt="image">
+        </div>
+
+        <div class="col-md-6">
+			<br>
+			<h3 class="signin-text mb3">Register</h3>
+            <form action="" method="post">
+
+				{% csrf_token %}
+
+				{% for field in form %}
+
+				<div class="form-group">
+					<label>{{ field.label }}</label>
+					{{ field }}
+				</div>
+
+				{% endfor %}
+
+				<input type="submit" name="Create User" class="btn btn-class">
+
+			</form>
+
+			{{ form.errors }}
+
+			<div>
+				<p>Already have an account? <a href="{% url 'login' %}">Login</a></p>
+			</div>
+			<br>
+			
+        </div>
+    </div>
+</div>
+
+<!-- <h1>Register</h1>
 
 <form method="POST" action="">
 
@@ -24,7 +59,8 @@
 
 <div>
 	<p>Already have an account? <a href="{% url 'login' %}">Login</a></p>
-</div>
+</div> -->
 
-</body>
-</html>
+
+
+{% endblock %}
