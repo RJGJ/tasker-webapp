@@ -2,53 +2,59 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-
+from django.contrib.auth.models import Group
 
 from .forms import CreateUserForm
+from .decorators import unauthenticated_user, allowed_users
 
 
 # Create your views here.
+
+@unauthenticated_user
 def register(request):
-    if request.user.is_authenticated:
-        return redirect('dashboard')
+   
+    form = CreateUserForm()
 
-    else:
-        form = CreateUserForm()
+    if request.method == 'POST':
+        form = CreateUserForm(request.POST)
 
-        if request.method == 'POST':
-            form = CreateUserForm(request.POST)
+        if form.is_valid():
+            user = form.save()
 
-            if form.is_valid():
-                form.save()
-                user = form.cleaned_data.get('username')
-                messages.success(request, f'Account was registered for {user}!')
+            # default group for new user to employees
+            group = Group.objects.get(name='employees')
+            user.groups.add(group)
 
-                return redirect('login')
+            # user = form.cleaned_data.get('username')
+            messages.success(request, f'Account was registered for {user}!')
 
-        context = {'form': form}
-        return render(request, 'tasker/register.html', context)
+            return redirect('login')
+
+    for field in form.fields:
+        print(field)
+
+    context = {'form': form}
+    return render(request, 'tasker/register.html', context)
 
 
+@unauthenticated_user
 def login_user(request):
-    if request.user.is_authenticated:
-        return redirect('dashboard')
+    
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
 
-    else:
-        if request.method == 'POST':
-            username = request.POST.get('username')
-            password = request.POST.get('password')
+        user = authenticate(request, username=username, password=password)
 
-            user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('dashboard')
 
-            if user is not None:
-                login(request, user)
-                return redirect('dashboard')
+        else:
+            messages.info(request, 'Username of Password is incorrect.')
 
-            else:
-                messages.info(request, 'Username of Password is incorrect.')
-
-        context = {}
-        return render(request, 'tasker/login.html', context)
+    context = {}
+    return render(request, 'tasker/login.html', context)
 
 
 @login_required(login_url='login')
@@ -58,6 +64,7 @@ def logout_user(request):
 
 
 @login_required(login_url='login')
+# @allowed_users(allowed_roles=['admin'])
 def dashboard(request):
     context = {}
     return render(request, 'tasker/dashboard.html', context)
