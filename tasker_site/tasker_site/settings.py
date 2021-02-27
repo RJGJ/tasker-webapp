@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'polls.apps.PollsConfig',
     'tasker.apps.TaskerConfig',
     'mptt',
+    'rest_framework',
+    'my_rest_api.apps.MyRestApiConfig',
 ]
 
 MIDDLEWARE = [

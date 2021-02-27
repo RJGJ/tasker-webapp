@@ -20,4 +20,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('polls/', include('polls.urls')),
     path('tasker/', include('tasker.urls')),
+    path('api/', include('my_rest_api.urls')),
 ]

@@ -2,12 +2,9 @@ from django.db import models
 from django.conf import settings
 from django.utils import timezone
 
-from mptt.models import MPTTModel, TreeForeignKey
-
-
 
 # Create your models here.
-class Task(MPTTModel):
+class Task(models.Model):
     """
     Task Model
 
@@ -51,29 +48,14 @@ class Task(MPTTModel):
     )
 
     # parent task
-    parent = TreeForeignKey(
+    parent = models.ForeignKey(
         'self',
         on_delete=models.CASCADE,
         null=True,
         blank=True,
-        related_name='childred'
     )
 
-    level = models.PositiveIntegerField(default=0)
-    lft = models.PositiveIntegerField(default=0)
-    rght = models.PositiveIntegerField(default=0)
-    tree_id = models.PositiveIntegerField(default=0)
-
-    class MPTTMeta:
-        order_insertion_by = ['name']
-
-    # subtasks = models.ManyToManyField('self', blank=True)
-
-    # taskers = models.ManyToManyField(
-    #     settings.AUTH_USER_MODEL,
-    #     blank=True,
-    #     default=None
-    # )
+    taskers = models.ManyToManyField(settings.AUTH_USER_MODEL)
 
     def __str__(self):
         return self.name
