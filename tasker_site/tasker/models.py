@@ -1,6 +1,9 @@
 from django.db import models
 from django.conf import settings
 from django.utils import timezone
+from django.db.models.signals import m2m_changed
+from django.dispatch import receiver
+from django.contrib.auth.models import User
 
 
 # Create your models here.
@@ -59,3 +62,15 @@ class Task(models.Model):
 
     def __str__(self):
         return self.name
+
+
+def task_exempt_creator(sender,  instance, action, reverse, *args, **kwargs):
+    '''
+    Removes the task creator from taskers field
+    '''
+    if  action is 'post_add':
+        creator = User.objects.filter(pk=instance.creator.pk)
+        instance.taskers.remove(creator[0])
+
+
+m2m_changed.connect(task_exempt_creator, sender=Task.taskers.through)
