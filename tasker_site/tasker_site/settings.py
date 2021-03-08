@@ -20,6 +20,7 @@ INSTALLED_APPS = [
 
     # apps
     'api.apps.ApiConfig',
+    'tasker_frontend.apps.TaskerFrontendConfig',
 
     # 3rd party apps
     'rest_framework',

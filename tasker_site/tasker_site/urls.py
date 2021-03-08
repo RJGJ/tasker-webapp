@@ -5,4 +5,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('api.urls')),
     path('auth/', include('djoser.urls')),
+    path('tasker/', include('tasker_frontend.urls')),
 ]
