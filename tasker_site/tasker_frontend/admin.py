@@ -1,3 +1,18 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import (
+	Company,
+	Department,
+	Task,
+	Log,
+)
+
+models = [
+	Company,
+	Department,
+	Task,
+	Log,
+]
+
+for model in models:
+	admin.register(model)
