@@ -15,3 +15,5 @@
 <ul>django-filter 2.4.0</ul>
 
 <ul>Markdown 3.3.3</ul>
+
+<ul>Markdown 2.1.0</ul>

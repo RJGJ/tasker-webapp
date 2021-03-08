@@ -6,3 +6,4 @@ generate_secret.py
 *__pycache__/
 *.lnk
 .vscode
+*db.sqlite3
