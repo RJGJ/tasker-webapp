@@ -15,4 +15,4 @@ models = [
 ]
 
 for model in models:
-	admin.register(model)
+	admin.site.register(model)
