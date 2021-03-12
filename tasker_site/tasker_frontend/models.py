@@ -1,9 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.core.validators import RegexValidator
-from django.utils import timezone
 
-import pytz
+from datetime import datetime as dt
 
 
 '''
@@ -58,7 +57,7 @@ class Task(models.Model):
     description 	= models.CharField(max_length=500, null=True)
     task_type 		= models.IntegerField(default=USER_TO_USER)
     creator 		= models.ForeignKey(User, on_delete=models.CASCADE, default=None)
-    creation_date	= models.DateTimeField(default=timezone.now())
+    creation_date	= models.DateTimeField(default=dt.now())
     due_date		= models.DateTimeField(default=None)
 
     def __init__(self):
@@ -74,7 +73,7 @@ class Log(models.Model):
     description 	= models.CharField(max_length=500, null=True)
     creator 		= models.ForeignKey(User, on_delete=models.CASCADE, default=None)
     task			= models.ForeignKey(Task, on_delete=models.CASCADE, default=None)
-    creation_date	= models.DateTimeField(default=timezone.now())
+    creation_date	= models.DateTimeField(default=dt.now())
 
     def __str__(self):
         return self.name
