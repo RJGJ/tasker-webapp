@@ -63,7 +63,7 @@ def company_detail(request, pk):
     return Response(serializer.data)
 
 
-@api_view(['POST']):
+@api_view(['POST'])
 def company_create(request):
     serializer = CompanySerializer(data=request.data)
 
