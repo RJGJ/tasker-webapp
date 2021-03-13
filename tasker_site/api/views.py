@@ -5,7 +5,7 @@ from rest_framework.decorators import api_view
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.response import Response
 
-from .serializers import CompanySerializer
+from .serializers import CompanySerializer, DepartmentSerializer, TaskSerializer, LogSerializer
 from tasker_frontend.models import Company, Department, Task, Log
 
 
@@ -44,13 +44,48 @@ def api_detail(request):
         'Log Detail'    : 'api/log-detail/<str:pk>/',
         'Log Create'    : 'api/log-create/',
     }
-    
+
     return JsonResponse(data, safe=False)
+
+
+# Company views ###################################################
+@api_view(['GET'])
+def company_list(request):
+    companies = Company.objects.all()
+    serializer = CompanySerializer(companies, many=True)
+    return Response(serializer.data)
 
 
 @api_view(['GET'])
 def company_detail(request, pk):
     company = Company.objects.get(id=pk)
     serializer = CompanySerializer(company, many=False)
+    return Response(serializer.data)
+
+
+@api_view(['POST']):
+def company_create(request):
+    serializer = CompanySerializer(data=request.data)
+
+    if serializer.is_valid():
+        serializer.save()
 
     return Response(serializer.data)
+
+
+@api_view(['POST'])
+def company_update(request, pk):
+    company = Company.objects.get(id=pk)
+    serializer = CompanySerializer(instance=company, data=request.data)
+
+    if serializer.is_valid():
+        serializer.save()
+
+    return Response(serializer.data)
+
+
+@api_view(['DELETE'])
+def company_delete(request, pk):
+    company = Company.objects.get(id=pk)
+    company.delete()
+    return Response(f'{company.name} is successfully deleted.')
