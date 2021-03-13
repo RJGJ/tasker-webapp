@@ -44,6 +44,7 @@ def api_detail(request):
         'Log Detail'    : 'api/log-detail/<str:pk>/',
         'Log Create'    : 'api/log-create/',
     }
+    
     return JsonResponse(data, safe=False)
 
 
