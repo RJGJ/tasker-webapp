@@ -20,28 +20,28 @@ def api_detail(request):
 
         # Company
         'Company List'      : 'api/company-list/',
-        'Company Detail'    : 'api/company-detail/<str:pk>/',
+        'Company Detail'    : 'api/company-detail/<int:pk>/',
         'Company Create'    : 'api/company-create/',
-        'Company Update'    : 'api/company-update/<str:pk>/',
-        'Company Delete'    : 'api/company-delete/<str:pk>/',
+        'Company Update'    : 'api/company-update/<int:pk>/',
+        'Company Delete'    : 'api/company-delete/<int:pk>/',
 
         # Department
-        'Department List'      : 'api/department-list/<str:pk>/',   # pk of company
-        'Department Detail'    : 'api/department-detail/<str:pk>/',
+        'Department List'      : 'api/department-list/<int:pk>/',   # pk of company
+        'Department Detail'    : 'api/department-detail/<int:pk>/',
         'Department Create'    : 'api/department-create/',
-        'Department Update'    : 'api/department-update/<str:pk>/',
-        'Department Delete'    : 'api/department-delete/<str:pk>/',
+        'Department Update'    : 'api/department-update/<int:pk>/',
+        'Department Delete'    : 'api/department-delete/<int:pk>/',
 
         # Task
-        'Task List'      : 'api/task-list/<str:pk1>/<str:pk2>/',    # pk of /company/department
-        'Task Detail'    : 'api/task-detail/<str:pk>/',
+        'Task List'      : 'api/task-list/<int:pk1>/<int:pk2>/',    # pk of /company/department
+        'Task Detail'    : 'api/task-detail/<int:pk>/',
         'Task Create'    : 'api/task-create/',
-        'Task Update'    : 'api/task-update/<str:pk>/',
-        'Task Delete'    : 'api/task-delete/<str:pk>/',
+        'Task Update'    : 'api/task-update/<int:pk>/',
+        'Task Delete'    : 'api/task-delete/<int:pk>/',
 
         # Log
         'Log List'      : 'api/log-list/',
-        'Log Detail'    : 'api/log-detail/<str:pk>/',
+        'Log Detail'    : 'api/log-detail/<int:pk>/',
         'Log Create'    : 'api/log-create/',
     }
 
