@@ -46,22 +46,22 @@ class Department(models.Model):
 
 class Task(models.Model):
     
-    COMPANY_TO_COMPANY = 1
-    COMPANY_TO_DEPARTMENT = 2
-    DEPARTMENT_TO_DEPARTMENT = 3
-    DEPARTMENT_TO_USER = 4
-    USER_TO_DEPARTMENT = 5
-    USER_TO_USER = 6
+    CHOICES = (
+        ('C2C', 'COMPANY_TO_COMPANY'),
+        ('C2D', 'COMPANY_TO_DEPARTMENT'),
+        ('D2D', 'DEPARTMENT_TO_DEPARTMENT'),
+        ('D2U', 'DEPARTMENT_TO_USER'),
+        ('U2D', 'USER_TO_DEPARTMENT'),
+        ('U2U', 'USER_TO_USER'),
+    )
 
     name 			= models.CharField(max_length=200, null=False, default=None)
     description 	= models.CharField(max_length=500, null=True)
-    task_type 		= models.IntegerField(default=USER_TO_USER)
-    creator 		= models.ForeignKey(User, on_delete=models.CASCADE, default=None)
+    task_type       = models.CharField(max_length=200, choices=CHOICES)
+    creator 		= models.ForeignKey(User, on_delete=models.CASCADE, null=False)
     creation_date	= models.DateTimeField(default=dt.now())
-    due_date		= models.DateTimeField(default=None)
-
-    def __init__(self):
-        taskers		= models.ManyToManyField(User, related_name=self.creator)
+    due_date		= models.DateTimeField(default=None, null=True, blank=True)
+    taskers         = models.ManyToManyField(User, related_name='creators')
 
     def __str__(self):
         return self.name
@@ -69,11 +69,11 @@ class Task(models.Model):
 
 class Log(models.Model):
 
-    title = models.CharField(max_length=500, null=False, default=None)
+    title           = models.CharField(max_length=500, null=False, default=None)
     description 	= models.CharField(max_length=500, null=True)
     creator 		= models.ForeignKey(User, on_delete=models.CASCADE, default=None)
     task			= models.ForeignKey(Task, on_delete=models.CASCADE, default=None)
     creation_date	= models.DateTimeField(default=dt.now())
 
     def __str__(self):
-        return self.name
+        return self.title
