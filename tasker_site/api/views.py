@@ -16,7 +16,7 @@ def api_detail(request):
         'API Overview' : 'api/',
         
         # User
-        'refer to this': 'https://djoser.readthedocs.io/en/latest/base_endpoints.html',
+        'User endpoints reference': 'https://djoser.readthedocs.io/en/latest/base_endpoints.html',
 
         # Company
         'Company List'      : 'api/company-list/',
