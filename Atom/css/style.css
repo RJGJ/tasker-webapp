@@ -2,7 +2,7 @@ body{
   font: 15px/1.5 Arial, Helvetica, sans-serif;
   padding:0;
   margin:0;
-  background-color:#f4f4f4;
+  background-color:#000080;
 }
 
 .container{
@@ -19,7 +19,7 @@ ul{
 /* header */
 
 header{
-  background:		#5AB9EA;
+  background:		#000080;
   color: #ffffff;
   padding-top:30px;
   min-height:70px;
@@ -28,7 +28,7 @@ header{
 }
 
 header a{
-  color:#ffffff;
+  color:#FFFF00;
   text-decoration:none;
   text-transform: uppercase;
   font-size:16px;
@@ -56,7 +56,7 @@ header nav{
 }
 
 header .highlight, header .current, header .current2 a{
-  color: #ffffff;
+  color: #FFFF00;
   font-weight:bold;
 }
 
@@ -65,16 +65,25 @@ header a:hover{
   font-weight:bold;
 }
 
+footer {
+  color: white;
+  text-align: center;
+}
+
 /* Showcase */
 
-#showcase{
+#showcase {
   min-height:800px;
   background:url('../img/showcase2.jpg') no-repeat 0 0px;
+  background-size:100%;
   text-align:center;
   color:#000000;
   padding-bottom:30px;
   min-height:750px;
   border-bottom:#25274D 3px solid;
+  float:none;
+  text-align:center;
+  width:100%;
 }
 
 #showcase h1{
@@ -86,4 +95,17 @@ margin-bottom:10px;
 
 #showcase p{
   font-size:15px;
+}
+
+@@media (max-width: 768px) {
+  header #branding,
+  header nav,
+  header nav li,
+  #showcase h1,
+  #showcase p{
+    float:none;
+    text-align:center;
+    width:100%;
+  }
+
 }
