@@ -12,7 +12,7 @@ class DepartmentAdmin(admin.ModelAdmin):
 
 
 class TaskAdmin(admin.ModelAdmin):
-    list_display = ['name', 'task_type', 'creator', 'creation_date', 'due_date']
+    list_display = ['name', 'creator', 'creation_date', 'due_date']
 
 
 class LogAdmin(admin.ModelAdmin):
