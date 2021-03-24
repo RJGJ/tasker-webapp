@@ -1,9 +1,11 @@
 from django.shortcuts import render
 from django.http import JsonResponse
+from django.db.models import Q
 
 from rest_framework.decorators import api_view
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.response import Response
+from rest_framework.authtoken.models import Token
 
 from .serializers import CompanySerializer, DepartmentSerializer, TaskSerializer, LogSerializer
 from tasker_frontend.models import Company, Department, Task, Log
@@ -14,7 +16,7 @@ from tasker_frontend.models import Company, Department, Task, Log
 def api_detail(request):
     data = {
         'API Overview' : 'api/',
-        
+         
         # User
         'User endpoints reference': 'https://djoser.readthedocs.io/en/latest/base_endpoints.html',
 
@@ -58,6 +60,11 @@ def company_list(request):
 
 @api_view(['GET'])
 def company_detail(request, pk):
+
+    # get token from header
+    # get user from token
+    # get tasks that belongs to the users department
+
     company = Company.objects.get(id=pk)
     serializer = CompanySerializer(company, many=False)
     return Response(serializer.data)
@@ -173,7 +180,14 @@ def department_delete(request, pk):
 # Task views #########################################################
 @api_view(['GET'])
 def task_list(request):
-    task = Task.objects.all()
+
+    token = request.headers['Authorization'].split(' ')[1]
+    user = Token.objects.get(key=token).user
+    task = Task.objects.filter(
+        Q(creator=user) | Q(taskers__in=[user,])
+    ).distinct()
+
+    print(task)
     serializer = TaskSerializer(task, many=True)
     return Response(serializer.data)
 
