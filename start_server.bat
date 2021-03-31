@@ -1,1 +1,1 @@
-call .venv\Scripts\activate.bat && cd tasker_site && python manage.py runserver
+call .venv\Scripts\activate.bat && cd tasker_site && python manage.py runserver 0.0.0.0:8000
