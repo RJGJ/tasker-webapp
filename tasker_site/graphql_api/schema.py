@@ -1,65 +1,79 @@
-from graphene_django import DjangoObjectType
-
-from tasker_frontend.models import *
 from django.contrib.auth.models import User
+from graphene_django import DjangoObjectType
+from graphql_auth.schema import UserQuery, MeQuery
+from graphql_auth import mutations
+from tasker_frontend.models import *
 from tasker_frontend.models import *
 
 import graphene
 
-
-class ProjectType(DjangoObjectType):
-	class Meta:
-		model = Project
+########## START TYPES ############################################################
 
 
-class UserType(DjangoObjectType):
-	class Meta:
-		model = User
+# class ProjectType(DjangoObjectType):
+# 	class Meta:
+# 		model = Project
 
 
-class TaskListType(DjangoObjectType):
-	class Meta:
-		model = TaskList
+# class TaskListType(DjangoObjectType):
+# 	class Meta:
+# 		model = TaskList
 
 
-class TaskListItemType(DjangoObjectType):
-	class Meta:
-		model = TaskListItem
+# class TaskListItemType(DjangoObjectType):
+# 	class Meta:
+# 		model = TaskListItem
 
 
-class LogType(DjangoObjectType):
-	class Meta:
-		model = Log
+# class LogType(DjangoObjectType):
+# 	class Meta:
+# 		model = Log
 
 
-class Query(graphene.ObjectType):
+########## END TYPES ################################################################
 
-	projects_by_user = graphene.List(ProjectType, pk=graphene.Int(required=True))
-	all_users = graphene.Field(UserType, id=graphene.Int(required=True))
-
-	def resolve_projects_by_user(root, info, pk):
-		return Project.objects.filter(owner__id=pk)
-
-	def resolve_all_users(root, info, id):
-		return User.objects.get(id=id)
+########## START MUTATIONS ##########################################################
 
 
-class ProjectMutation(graphene.Mutation):
+# class ProjectMutation(graphene.Mutation):
 
-	class Arguments:
-		new_title = graphene.String(required=True)
+# 	class Arguments:
+# 		new_title = graphene.String(required=True)
 
-	project = graphene.Field(ProjectType)
+# 	project = graphene.Field(ProjectType)
 
-	@classmethod
-	def mutate(self, root, info , new_title):
-		project = Project(title=new_title)
-		project.save()
+# 	@classmethod
+# 	def mutate(self, root, info , new_title):
+# 		project = Project(title=new_title)
+# 		project.save()
 
 
-class MyMutation(graphene.ObjectType):
+class AuthMutation(graphene.ObjectType):
+	register = 					mutations.Register.Field()
+	verify_account = 			mutations.VerifyAccount.Field()
+	token_auth = 				mutations.ObtainJSONWebToken.Field()
+	update_account = 			mutations.UpdateAccount.Field()
+	resend_activation_email = 	mutations.ResendActivationEmail.Field()
+	send_password_reset_email =	mutations.SendPasswordResetEmail.Field()
+	password_reset = 			mutations.PasswordReset.Field()
 
-	update_projects = ProjectMutation.Field()
+
+########## END MUTATIONS ############################################################
+
+
+class Query(UserQuery, MeQuery, graphene.ObjectType):
+
+	# projects_by_user = graphene.List(ProjectType, pk=graphene.Int(required=True))
+
+	# def resolve_projects_by_user(root, info, pk):
+	# 	return Project.objects.filter(owner__id=pk)
+	pass
+
+
+class MyMutation(AuthMutation, graphene.ObjectType):
+
+	# update_projects = ProjectMutation.Field()
+	pass
 
 
 schema = graphene.Schema(query=Query, mutation=MyMutation)

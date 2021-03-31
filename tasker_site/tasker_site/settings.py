@@ -22,34 +22,16 @@ INSTALLED_APPS = [
 	'django.contrib.staticfiles',
 
 	# apps
-	# 'api.apps.ApiConfig',
 	'tasker_frontend.apps.TaskerFrontendConfig',
 	'graphql_api.apps.GraphqlApiConfig',
 
 	# 3rd party apps
-	# 'rest_framework',
-	# 'rest_framework.authtoken',
-	# 'djoser',
 	'corsheaders',
 	'graphene_django',
+	'graphql_jwt.refresh_token.apps.RefreshTokenConfig',
+	'graphql_auth',
+	'django_filters',
 ]
-
-GRAPHENE = {
-    "SCHEMA": "django_root.schema.schema"
-}
-
-# REST_FRAMEWORK = {
-# 	'DEFAULT_AUTHENTICATION_CLASSES': (
-# 		'rest_framework.authentication.TokenAuthentication',
-# 	),
-# 	'DEFAULT_PERMISSION_CLASSES': [
-# 		'rest_framework.permissions.IsAuthenticated',
-# 	]
-# }
-
-# DJOSER = {
-# 	'USER_ID_FIELD': 'username',
-# }
 
 MIDDLEWARE = [
 	'django.middleware.security.SecurityMiddleware',
@@ -122,3 +104,28 @@ STATIC_URL = '/static/'
 
 # added settings
 CORS_ORIGIN_ALLOW_ALL = True
+
+GRAPHENE = {
+    'SCHEMA': 'graphql_api.schema.schema',
+    'MIDDLEWARE': [
+    	'graphql_jwt.middleware.JSONWebTokenMiddleware',
+    ],
+}
+
+GRAPHQL_JWT = {
+	'JWT_ALLOW_ANY_CLASSES': [
+		'graphql_auth.mutations.Register',
+		'graphql_auth.mutations.VerifyAccount',
+		'graphql_auth.mutations.ObtainJSONWebToken',
+	],
+	'JWT_VERIFY_EXPIRATION': True,
+	'JWT_LONG_RUNNING_REFRESH_TOKEN': True,
+}
+
+AUTHENTICATION_BACKENDS = [
+	# 'graphql_jwt.backends.JSONWebTokenBackend',
+	'graphql_auth.backends.GraphQLAuthBackend',
+	'django.contrib.auth.backends.ModelBackend',
+]
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
