@@ -5,60 +5,54 @@ from django.core.validators import RegexValidator
 from datetime import datetime as dt
 
 
-class Company(models.Model):
+class Project(models.Model):
 
-    _phone_regex = RegexValidator(
-        regex=r'^\+?1?\d{9,15}$',
-        message="Phone number must be entered in the format: '+999999999'. Up to 15 digits allowed."
-    )
+	title 			= models.CharField(max_length=500, null=False, default=None)
+	owner 			= models.ForeignKey(User, on_delete=models.CASCADE, default=None)
+	members 		= models.ManyToManyField(User, related_name='owner', blank=True)
+	creation_date 	= models.DateTimeField(default=dt.now())
 
-    name 		= models.CharField(max_length=200, null=False, default=None)
-    description = models.CharField(max_length=500, null=True)
-    email 		= models.EmailField(max_length=200, null=False, default=None)
-    phone 		= models.CharField(validators=[_phone_regex,], max_length=200, null=False, default=None)
-    address 	= models.CharField(max_length=500, null=False, default=None)
-
-    def __str__(self):
-        return self.name
+	def __str__(self):
+		return self.title
 
 
-class Department(models.Model):
+class TaskList(models.Model):
 
-    name 		= models.CharField(max_length=200, null=False, default=None)
-    description = models.CharField(max_length=500, null=True)
-    company		= models.ForeignKey(Company, on_delete=models.CASCADE, default=None)
+	title 			= models.CharField(max_length=500, null=False, default=None)
+	project 		= models.ForeignKey(Project, on_delete=models.CASCADE, default=None )
 
-    def __str__(self):
-        return self.name
+	def __str__(self):
+		return self.title
 
 
-class Task(models.Model):
+class TaskListItem(models.Model):
 
-    name 			= models.CharField(max_length=200, null=False, default=None)
-    description 	= models.CharField(max_length=500, blank=True, default=None)
-    creator 		= models.ForeignKey(User, on_delete=models.CASCADE, null=False)
-    creation_date	= models.DateTimeField(default=dt.now())
-    due_date		= models.DateTimeField(default=None, null=True, blank=True)
-    taskers         = models.ManyToManyField(User, related_name='creators', blank=True)
+	title 			= models.CharField(max_length=500, null=False, default=None)
+	parent_list 	= models.ForeignKey(TaskList, on_delete=models.CASCADE, default=None)
+	assingned_to 	= models.ManyToManyField(User, blank=True)
+	creation_date 	= models.DateTimeField(default=dt.now())
+	due_date 		= models.DateTimeField(default=None, null=True, blank=True)
+	finished 		= models.BooleanField(default=False)
 
-    def __str__(self):
-        return self.name
+	def __str__(self):
+		return self.title
 
 
 class Log(models.Model):
 
-    title           = models.CharField(max_length=500, null=False, default=None)
-    description 	= models.CharField(max_length=500, null=True)
-    creator 		= models.ForeignKey(User, on_delete=models.CASCADE, default=None)
-    task			= models.ForeignKey(Task, on_delete=models.CASCADE, default=None)
-    creation_date	= models.DateTimeField(default=dt.now())
+	title 			= models.CharField(max_length=500, null=False, default=None)
+	description 	= models.CharField(max_length=500, null=True)
+	creator 		= models.ForeignKey(User, on_delete=models.CASCADE, default=None)
+	project			= models.ForeignKey(Project, on_delete=models.CASCADE, default=None)
+	creation_date	= models.DateTimeField(default=dt.now())
 
-    def __str__(self):
-        return self.title
+	def __str__(self):
+		return self.title
 
 
 class UserProfile(models.Model):
-    
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    department = models.ForeignKey(Department, on_delete=models.CASCADE)
-    company = models.ForeignKey(Company, on_delete=models.CASCADE)
+	
+	user = models.OneToOneField(User, on_delete=models.CASCADE)
+
+	def __str__(self):
+		return self.user.username
