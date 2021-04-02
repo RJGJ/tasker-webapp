@@ -1,30 +1,30 @@
 from django.contrib import admin
 
-from .models import Company, Department, Task, Log
+from .models import *
 
 
-class CompanyAdmin(admin.ModelAdmin):
-    list_display = ['name', 'email', 'phone', 'address']
+class ProjectAdmin(admin.ModelAdmin):
+	list_display = ['title', 'id', 'creation_date']
 
 
-class DepartmentAdmin(admin.ModelAdmin):
-    list_display = ['name', 'company']
+class TaskListAdmin(admin.ModelAdmin):
+	list_display = ['title', 'id', 'project']
 
 
-class TaskAdmin(admin.ModelAdmin):
-    list_display = ['name', 'creator', 'creation_date', 'due_date']
+class TaskListItemAdmin(admin.ModelAdmin):
+	list_display = ['title', 'id', 'parent_list', 'creation_date', 'due_date']
 
 
 class LogAdmin(admin.ModelAdmin):
-    list_display = ['title', 'creator', 'task', 'creation_date']
+	list_display = ['title', 'id', 'creator', 'project', 'creation_date']
 
 
 models = {
-    Company     : CompanyAdmin,
-    Department  : DepartmentAdmin,
-    Task        : TaskAdmin,
-    Log         : LogAdmin,
+	Project 		: ProjectAdmin,
+	TaskList 		: TaskListAdmin,
+	TaskListItem 	: TaskListItemAdmin,
+	Log 			: LogAdmin,
 }
 
 for model in models:
-    admin.site.register(model, models[model])
+	admin.site.register(model, models[model])
