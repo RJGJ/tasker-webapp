@@ -1,6 +1,8 @@
 from pathlib import Path
 from decouple import config
 
+from datetime import timedelta
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = config('SECRET_KEY', cast=str)
@@ -119,6 +121,8 @@ GRAPHQL_JWT = {
 		'graphql_auth.mutations.ObtainJSONWebToken',
 	],
 	'JWT_VERIFY_EXPIRATION': True,
+	'JWT_EXPIRATION_DELTA': timedelta(minutes=5),
+    'JWT_REFRESH_EXPIRATION_DELTA': timedelta(days=7),
 	'JWT_LONG_RUNNING_REFRESH_TOKEN': True,
 }
 

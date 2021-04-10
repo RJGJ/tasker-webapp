@@ -3,6 +3,14 @@ from django.contrib import admin
 from .models import *
 
 
+class UserProfileAdmin(admin.ModelAdmin):
+	list_display = ['user', 'id']
+
+
+class TeamAdmin(admin.ModelAdmin):
+	list_display = ['name', 'id', 'email']
+
+
 class ProjectAdmin(admin.ModelAdmin):
 	list_display = ['title', 'id', 'creation_date']
 
@@ -24,6 +32,8 @@ models = {
 	TaskList 		: TaskListAdmin,
 	TaskListItem 	: TaskListItemAdmin,
 	Log 			: LogAdmin,
+	UserProfile		: UserProfileAdmin,
+	Team			: TeamAdmin,
 }
 
 for model in models:

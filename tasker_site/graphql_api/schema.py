@@ -3,6 +3,8 @@ from django.contrib.auth.models import User
 from graphene_django import DjangoObjectType
 from graphql_auth.schema import UserQuery, MeQuery
 from graphql_auth import mutations
+from graphql_jwt.decorators import login_required
+from graphql_jwt import Verify, Refresh
 
 from graphene_django_cud.mutations.create import DjangoCreateMutation
 from graphene_django_cud.mutations.patch import DjangoPatchMutation
@@ -13,6 +15,21 @@ from tasker_frontend.models import *
 import graphene
 
 ########## START TYPES ############################################################
+
+
+class UserType(DjangoObjectType):
+    class Meta:
+        model = User
+
+
+class UserProfileType(DjangoObjectType):
+    class Meta:
+        model = UserProfile
+
+
+class TeamType(DjangoObjectType):
+    class Meta:
+        model = Team
 
 
 class UserInputType(graphene.InputObjectType):
@@ -69,7 +86,7 @@ class AuthMutation(graphene.ObjectType):
     token_auth                  = mutations.ObtainJSONWebToken.Field()
     update_account              = mutations.UpdateAccount.Field()
     resend_activation_email     = mutations.ResendActivationEmail.Field()
-    send_password_reset_email   =   mutations.SendPasswordResetEmail.Field()
+    send_password_reset_email   = mutations.SendPasswordResetEmail.Field()
     password_reset              = mutations.PasswordReset.Field()
 
 
@@ -78,14 +95,22 @@ class AuthMutation(graphene.ObjectType):
 
 class Query(UserQuery, MeQuery, graphene.ObjectType):
 
-    projects_by_user = graphene.List(ProjectType, pk=graphene.Int(required=True))
+    projects_by_user = graphene.List(ProjectType, pk=graphene.Int(required=True), token=graphene.String(required=True))
+    viewer = graphene.Field(UserType, token=graphene.String(required=True))
 
+    @login_required
+    def resolve_viewer(self, info, **kwargs):
+        return info.context.user
+    
+    @login_required
     def resolve_projects_by_user(root, info, pk):
         return Project.objects.filter(owner__id=pk)
 
 
 class MyMutation(AuthMutation, graphene.ObjectType):
 
+    verify_token = Verify.Field()
+    refresh_token = Refresh.Field()
     create_project = ProjectUpdateMutation.Field()
     patch_project = ProjectPatchMutation.Field()
     delete_project = ProjectDeleteMutation.Field()

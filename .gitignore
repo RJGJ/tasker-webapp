@@ -7,3 +7,4 @@ generate_secret.py
 *.lnk
 .vscode
 *db.sqlite3
+migrations/
