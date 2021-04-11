@@ -29,7 +29,7 @@ class Project(models.Model):
 
 	title 			= models.CharField(max_length=254, null=False, default=None)
 	description 	= models.CharField(max_length=500, null=True)
-	owner 			= models.ForeignKey(User, on_delete=models.CASCADE, default=None)
+	team 			= models.ForeignKey(Team, on_delete=models.CASCADE, default=None, null=False)
 	members 		= models.ManyToManyField(User, related_name='owner', blank=True)
 	creation_date 	= models.DateTimeField(default=dt.now())
 

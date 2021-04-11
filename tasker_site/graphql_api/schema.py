@@ -103,8 +103,9 @@ class Query(UserQuery, MeQuery, graphene.ObjectType):
         return info.context.user
     
     @login_required
-    def resolve_projects_by_user(root, info, pk):
-        return Project.objects.filter(owner__id=pk)
+    def resolve_projects_by_user(root, info, pk, **kwargs):
+        # get all projects that the user is a member
+        return Project.objects.filter(members__id = pk)
 
 
 class MyMutation(AuthMutation, graphene.ObjectType):

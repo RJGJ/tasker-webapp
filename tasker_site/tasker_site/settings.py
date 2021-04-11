@@ -9,10 +9,7 @@ SECRET_KEY = config('SECRET_KEY', cast=str)
 
 DEBUG = config('DEBUG', cast=bool)
 
-ALLOWED_HOSTS = [
-	'192.168.43.187',
-	'localhost',
-]
+ALLOWED_HOSTS = ['*']
 
 
 INSTALLED_APPS = [
@@ -121,14 +118,15 @@ GRAPHQL_JWT = {
 		'graphql_auth.mutations.ObtainJSONWebToken',
 	],
 	'JWT_VERIFY_EXPIRATION': True,
-	'JWT_EXPIRATION_DELTA': timedelta(minutes=5),
-    'JWT_REFRESH_EXPIRATION_DELTA': timedelta(days=7),
+	'JWT_EXPIRATION_DELTA': timedelta(minutes=999),
+    'JWT_REFRESH_EXPIRATION_DELTA': timedelta(days=999),
 	'JWT_LONG_RUNNING_REFRESH_TOKEN': True,
+	'JWT_ALLOW_ARGUMENT': True,
 }
 
 AUTHENTICATION_BACKENDS = [
-	# 'graphql_jwt.backends.JSONWebTokenBackend',
-	'graphql_auth.backends.GraphQLAuthBackend',
+	'graphql_jwt.backends.JSONWebTokenBackend',
+	# 'graphql_auth.backends.GraphQLAuthBackend',
 	'django.contrib.auth.backends.ModelBackend',
 ]
 
