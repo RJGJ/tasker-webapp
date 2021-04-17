@@ -9,30 +9,36 @@ SECRET_KEY = config('SECRET_KEY', cast=str)
 
 DEBUG = config('DEBUG', cast=bool)
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = [
+    'localhost',
+]
 
 
 INSTALLED_APPS = [
+    # apps
+	'tasker_frontend.apps.TaskerFrontendConfig',
+	'graphql_api.apps.GraphqlApiConfig',
+    
+    # 3rd party apps
+	'corsheaders',
+	'graphene_django',
+	'graphql_jwt.refresh_token.apps.RefreshTokenConfig',
+	'graphql_auth',
+	'django_filters',
+    
 	'django.contrib.admin',
 	'django.contrib.auth',
 	'django.contrib.contenttypes',
 	'django.contrib.sessions',
 	'django.contrib.messages',
 	'django.contrib.staticfiles',
-
-	# apps
-	'tasker_frontend.apps.TaskerFrontendConfig',
-	'graphql_api.apps.GraphqlApiConfig',
-
-	# 3rd party apps
-	'corsheaders',
-	'graphene_django',
-	'graphql_jwt.refresh_token.apps.RefreshTokenConfig',
-	'graphql_auth',
-	'django_filters',
 ]
 
 MIDDLEWARE = [
+	# third party
+	'corsheaders.middleware.CorsMiddleware',
+
+	# django built-in
 	'django.middleware.security.SecurityMiddleware',
 	'django.contrib.sessions.middleware.SessionMiddleware',
 	'django.middleware.common.CommonMiddleware',
@@ -40,9 +46,6 @@ MIDDLEWARE = [
 	'django.contrib.auth.middleware.AuthenticationMiddleware',
 	'django.contrib.messages.middleware.MessageMiddleware',
 	'django.middleware.clickjacking.XFrameOptionsMiddleware',
-
-	# third party
-	'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'tasker_site.urls'
@@ -101,8 +104,32 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-# added settings
-CORS_ORIGIN_ALLOW_ALL = True
+## added settings
+#CORS_ALLOW_ALL_ORIGINS = True
+#CORS_ORIGIN_ALLOW_ALL = True
+#CORS_ALLOW_CREDENTIALS = True
+
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:8080',    
+]
+
+CORS_ALLOW_METHODS = [
+    'DELETE',
+    'GET',
+    'OPTIONS',
+    'PATCH',
+    'POST',
+    'PUT',
+]
+
+CORS_ALLOW_HEADERS = [
+    'content-disposition',
+    'accept-encoding',
+    'content-type',
+    'accept',
+    'origin',
+    'authorization',
+]
 
 GRAPHENE = {
     'SCHEMA': 'graphql_api.schema.schema',
