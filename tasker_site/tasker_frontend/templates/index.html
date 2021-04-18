@@ -1,12 +1,61 @@
+{% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FrontEnd</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width" />
+	<meta name="description" content="University of Perpetual Help-GMA Tasker" />
+	<meta name="keywords" content="web-based task manager,tasker,task manager,web tasker" />
+	<meta name="author" content="Rholex Dizon, RJ Jaictin, Aaron Patungcal" />
+	<title>Web-based Team Tasks Manager:Tasker | Welcome</title>
+	<link rel="stylesheet" href="{% static 'css/index.css' %}" />
+	<!-- livereload -->
+	<script src="http://localhost:35729/livereload.js?snipver=1"></script>
+	<!-- jQuery -->
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 </head>
+
 <body>
-    
+	<header>
+		<div class="perpetual">
+			<div class="uni">
+				<h1 style="text-align: center; margin-left: 20px;" ;>
+					<strong>UNIVERSITY OF PERPETUAL HELP SYSTEM GMA</strong>
+				</h1>
+			</div>
+
+			<p style="text-align: center; margin-left: 20px;">
+				San Gabriel, General Mariano Alvarez (GMA), Cavite<br />
+				Contact No. (0909) 809 - 4200 • (046) 460 - 4086 • (02)<br />
+				email: guidance@gma.uphsl.edu.ph/ marketing@gma.uphsl.edu.ph<br />
+				url: www.uphsl.edu.ph
+			</p>
+			<div id="branding">
+				<h1>
+					<span class="highlight">Web-based task manager: <i>Tasker</i></span>
+				</h1>
+			</div>
+
+			<nav>
+				<ul>
+					<li class="current"><a href="/login">Login</a></li>
+					<li class="current2"><a href="/register">Register</a></li>
+				</ul>
+			</nav>
+		</div>
+	</header>
+	</div>
+	<section id="showcase">
+		<div class="container">
+			<h1><i>Tasker</i> is a website created to help groups<br>/teams finish tasks/projects on time.</h1>
+			<p>Lorem ipsum dolor sit amet,<br>
+				consectetur adipiscing elit.<br>
+				Cras scelerisque, mauris sed fringilla cursus, mi ex <br>porta libero,
+				interdum sodales lacus dolor sed neque.</p><br>
+		</div>
+	</section>
+	<footer>
+		<p>Web-based task manager - <i>Tasker</i>, Copyright &copy; 2021</p>
+	</footer>
 </body>
 </html>

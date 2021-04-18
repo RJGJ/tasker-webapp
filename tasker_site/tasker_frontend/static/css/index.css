@@ -1,0 +1,126 @@
+@import url("https://fonts.googleapis.com/css?family=Poppins");
+* {
+    margin: 0;
+    padding: 0;
+    outline: none;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+body {
+    height: 100px;
+      width: 100%;
+}
+
+
+.perpetual {
+    font-weight: bold;
+    font-size: 12px;
+    background-color: #151b54;
+    font-family: Tahoma;
+    color: white;
+    padding-top: 20px;
+    padding-bottom: 20px;
+
+}
+
+
+.container{
+  position: absolute;
+  left:20px;
+  padding-top:30px;
+}
+header a {
+    color: #ffff00;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 16px;
+}
+
+header li {
+    float: left;
+    display:inline;
+    padding: 0px 20px 0px 20px;
+  position:relative;
+  right:10px;
+  bottom:10px;
+
+
+
+}
+
+header #branding {
+    float: left;
+
+}
+
+header #branding h1 {
+  float: right;
+  padding: 0 20px 0 20px;
+  position:absolute;
+  top:113px;
+
+}
+
+header nav {
+    float: right;
+
+}
+
+header .highlight,
+header .current,
+header .current2 a {
+    color: #ffff00;
+    font-weight: bold;
+
+}
+
+
+header a:hover {
+    color: #cccccc;
+    font-weight: bold;
+}
+
+footer {
+    color:white;
+    text-align: center;
+    padding-top: 15px;
+    padding-bottom:20px;
+    background-color: #151b54;
+}
+
+
+
+#showcase {
+
+    background: url("../images/showcase.jpg");
+    text-align: left;
+    padding:30px 30px 30px;
+    line-height: 50px;
+    color: #151b54;
+    width: 1500px;
+    height:740px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50% 30%;
+    width: 100%;
+}
+
+#showcase h1 {
+    margin-top: 10px;
+    font-size: 20px;
+margin-bottom:10px;
+    color:#151b54;
+}
+
+#showcase p {
+    font-size: 15px;
+    color:#151b54;
+}
+
+@media only screen and (min-width: 768px) {
+    .about {
+        display: block;
+        width: 100%;
+        padding-bottom: 20px;
+        padding-top: 20px;
+    }
