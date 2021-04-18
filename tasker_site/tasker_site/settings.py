@@ -3,6 +3,8 @@ from decouple import config
 
 from datetime import timedelta
 
+import os
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = config('SECRET_KEY', cast=str)
@@ -104,10 +106,11 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-## added settings
-#CORS_ALLOW_ALL_ORIGINS = True
-#CORS_ORIGIN_ALLOW_ALL = True
-#CORS_ALLOW_CREDENTIALS = True
+SETTINGS_PATH = os.path.dirname(os.path.dirname(__file__))
+
+TEMPLATE_DIRS = (
+    os.path.join(SETTINGS_PATH, 'templates'),
+)
 
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:8080',    

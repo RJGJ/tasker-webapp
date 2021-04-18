@@ -1,0 +1,111 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<meta charset="utf-8" />
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+  integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+<title>Account Settings</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="{% static 'css/account-settings.css' %}">
+</link>
+<body>
+  <div class="contain">
+    <img src="{% static 'images/logo.png' %}" alt="School Logo" width="70px" height="100px" align="left" style="margin:10px 25px">
+
+    <div class="about">
+      <div class="uni">
+        <h1 style="text-align: center; margin-right:100px" ;><strong>UNIVERSITY OF PERPETUAL HELP SYSTEM GMA</h1>
+        </strong>
+      </div>
+
+      <p style="text-align: center ; margin-right: 100px;">San Gabriel, General Mariano Alvarez (GMA), Cavite<br>
+        Contact No. (0909) 809 - 4200 • (046) 460 - 4086 • (02)<br>email: guidance@gma.uphsl.edu.ph/
+        marketing@gma.uphsl.edu.ph<br> url: www.uphsl.edu.ph
+      </p>
+
+    </div>
+  </div>
+
+  <div class="tasker"><b>Tasker</b></div>
+
+  <div class="navbar">
+    <a onclick="window.location = '/';">HOME</a>
+    <a onclick="window.location = '/dashboard';">VIEW DASHBOARD</a>
+  </div>
+
+  <!-- ACCOUNT SETTINGS -->
+  <div class="settings-page">
+    <div class="settings-container">
+      <h1 class="page-title">Account</h1>
+      <div class="settings-section">
+        <h2 class="settings-title">General Information</h2>
+        <div class="non-active-form">
+          <p>Name</p><i class="fas fa-pen"></i>
+        </div>
+        <div>
+          <div class="non-active-form">
+            <p class="capitalize">Address</p><i class="fas fa-pen"></i>
+          </div>
+        </div>
+        <div>
+          <div class="non-active-form">
+            <p class="capitalize">Birthday</p><i class="fas fa-pen"></i>
+          </div>
+        </div>
+
+        <div class="settings-section">
+          <h2 class="settings-title">My profile</h2>
+          <form class="form my-form">
+            <div class="img-upload-container">
+              <label class="img-upload btn btn-bwm" style="background-image: url('');">
+                <input type="file" accept=".jpg, .png, .jpeg, .gif" value="">
+              </label>
+              <h4>Change Your Profile Picture</h4>
+              <div class="img-preview-container">
+                <div class="img-preview" style="background-image: url('');">
+                </div>
+              </div>
+            </div>
+            <div class="form-submit">
+              <button class="btn button full" type="submit" disabled="">Save New Picture</button>
+            </div>
+          </form>
+        </div>
+        <div class="settings-section">
+          <h2 class="settings-title">Password</h2>
+          <form class="form my-form">
+            <div class="form-group">
+              <div class="input-group">
+                <input name="currentPassword" placeholder="Old Password" type="password" class="form-control"
+                  autocomplete="Old Password" value="">
+                <span class="focus-input"></span>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="input-group">
+                <input name="password" placeholder="New Password" type="password" class="form-control"
+                  autocomplete="New Password" value="">
+                <span class="focus-input"></span>
+              </div>
+            </div>
+            <div class="form-submit right">
+              <button class="btn button full" type="submit" disabled="">Change Password</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <!-- js-cookie -->
+  <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
+  <!-- scripts -->
+  <script src="{% static 'js/settings.js' %}"></script>
+  <script src="{% static 'js/account-settings.js' %}"></script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,352 @@
+@import url("https://fonts.googleapis.com/css?family=Poppins");
+* {
+    margin: 0;
+    padding: 0;
+    outline: none;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+body {
+    height: 100px;
+    width: 100%;
+  }
+
+  body::-webkit-scrollbar {
+    width: 8px;
+  }
+  body::-webkit-scrollbar-track {
+    background: black;
+  }
+  body::-webkit-scrollbar-thumb {
+    background: #454545;
+    border-radius: 3px;
+  }
+  body::-webkit-scrollbar-thumb:hover {
+    background: grey;
+  }
+
+
+.about {
+    font-weight: bold;
+    font-size: 12px;
+    background-color: #151b54;
+    font-family: Tahoma;
+    color: white;
+    padding-top: 15px;
+
+
+}
+
+/*---Navigation Bar---*/
+
+.navbar {
+  overflow: hidden;
+  background-color:  #ffe602;
+}
+
+.navbar a {
+  float: left;
+  font-size: 14px;
+  color: black;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+
+.dropdowna
+{
+  float: right;
+  overflow: hidden;
+}
+
+.dropdown .dropbtn, .dropdowna .dropadmin {
+  font-size: 14px;
+  border: none;
+  outline: none;
+  color: black;
+  padding: 14px 40px;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+}
+
+.navbar a:hover, .dropdown:hover .dropbtn, .dropdowna:hover .dropadmin {
+  background-color: #9E8F03;
+
+}
+
+.dropdown-content{
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  width: 120px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-contents {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  width: 140px;
+  box-shadow: 0px 8px 14px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a , .dropdown-contents a{
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover, .dropdown-contents a:hover {
+  background-color: #151b54;
+  color: white;
+}
+
+.dropdown:hover .dropdown-content, .dropdowna:hover .dropdown-contents{
+  display: block;
+}
+
+.navbar input[type=text] {
+    border: 1px solid #ccc;
+}
+
+
+
+.prof{
+	text-align:center;
+}
+
+.tasker{
+  text-align: center;
+  background-color:#778899;
+  color:white;
+  font-size: 25px;
+}
+
+.project{
+  padding-left: 40px;
+}
+
+/*--Account Settings --*/
+
+.page-title {
+  margin-bottom: 20px;
+  font-size: 30px;
+  font-weight: normal;
+}
+
+.settings-page {
+
+  width: 100%;
+  min-height: 90vh;
+}
+.settings-page .settings-container {
+  width: 100%;
+  max-width: 850px;
+  margin: auto;
+  padding: 20px;
+  padding-top: 40px;
+}
+.settings-page .settings-container .settings-title {
+  color: #454545;
+  text-transform: uppercase;
+  font-weight: normal;
+  font-size: 20px;
+}
+.settings-page .settings-container .settings-section {
+  width: 100%;
+  border-top: 2px solid #454545;
+  padding-top: 10px;
+  margin-bottom: 20px;
+}
+.settings-page .settings-container .settings-section .my-form {
+  max-width: 400px;
+  width: 100%;
+  margin: 30px auto;
+}
+.settings-page .settings-container .settings-section .my-form .form-submit.right {
+  justify-content: flex-end;
+}
+.settings-page .settings-container .settings-section .my-form .form-submit {
+  display: flex;
+}
+.settings-page .settings-container .settings-section .my-form .form-submit .btn {
+  width:100%;
+}
+.settings-page .settings-container .settings-section .my-form .form-group.editable .input-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+.settings-page .settings-container .settings-section .my-form .form-group.editable .input-group .form-control {
+  margin-bottom: 0;
+}
+.settings-page .settings-container .settings-section .my-form .form-group.editable .input-group .btn {
+  height: 38px;
+  margin: 0 10px;
+  background-color: #E59500;
+  transition: all 0.5s;
+}
+.settings-page .settings-container .settings-section .my-form .form-group.editable .input-group .btn:hover {
+  color: #E59500;
+  background-color: #E5DADA;
+}
+.settings-page .settings-container .settings-section .my-form .form-group.editable .input-group i {
+  cursor: pointer;
+  color: #454545;
+  transition: all 0.5s;
+}
+.settings-page .settings-container .settings-section .my-form .form-group.editable .input-group i:hover {
+  color: #E59500;
+}
+.settings-page .settings-container .settings-section .non-active-form {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+.settings-page .settings-container .settings-section .non-active-form p {
+  padding: 7px 15px;
+  margin-bottom: 0;
+  font-size: 1rem;
+  cursor: default;
+}
+.settings-page .settings-container .settings-section .non-active-form i {
+  cursor: pointer;
+  color: #454545;
+  transition: all 0.5s;
+  margin-right: 10px;
+}
+.settings-page .settings-container .settings-section .non-active-form i:hover {
+  color: #E59500;
+  transform: scale(1.1);
+}
+
+.img-upload-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  margin-bottom: 1em;
+}
+.img-upload-container label {
+  margin-bottom: 20px;
+  position: relative;
+  border-radius: 0.25rem;
+  height: 80px;
+  min-width: 80px;
+  cursor: pointer;
+  overflow: hidden;
+  background-color: grey;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 20px;
+  background-size: contain;
+}
+.img-upload-container h4 {
+  text-align: left;
+  font-size: 16px;
+  color: grey;
+  cursor: pointer;
+  transition: all 0.5s;
+}
+.img-upload-container h4:hover {
+  color: white;
+}
+.img-upload-container .img-preview-container {
+  position: absolute;
+  border-radius: 0.25rem;
+  overflow: hidden;
+}
+.img-upload-container .img-preview {
+  background: center center no-repeat;
+  background-size: cover;
+  height: 80px;
+  width: 80px;
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+.img-upload-container .img-upload {
+  margin-bottom: 0;
+}
+.img-upload-container input {
+  display: none;
+}
+.img-upload-container .alert {
+  margin-top: 10px;
+  position: absolute;
+  bottom: 0px;
+  background-color: transparent;
+  border: 0;
+  color: #E59500;
+}
+
+.my-form {
+  visibility: visible;
+}
+.my-form .form-group .input-group {
+  border-radius: 0.25rem;
+  overflow: hidden;
+}
+.my-form .form-group .input-group input.form-control {
+
+  padding: 10px 15px;
+  background-color: white;
+color: #000080;;
+  font-family: "Fira Sans", sans-serif;
+    border: 2px solid lightgrey;
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+  font-size: 15px;
+}
+.my-form .form-group .alert-input {
+  color: #E59500;
+  font-weight: 100;
+  font-size: 20px;
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+}
+.my-form .form-submit {
+  width: 100%;
+}
+.my-form .form-submit .btn {
+  width: 100%;
+  border-radius: 0.25rem;
+  background-color: grey;
+  color: #E5DADA;
+  cursor: default;
+}
+.my-form .form-submit .btn:disabled {
+  opacity: 0.75;
+}
+.my-form .form-submit .btn:not(:disabled):not(.disabled) {
+  background-color: #E59500;
+}
+
+.form-submit.right{
+  margin-top: 15px;
+
+}
+
+
+@media only screen and (min-width: 768px) {
+  .about, .contain{
+      display: block;
+      width: 100%;
+      padding-bottom: 10px;
+      padding-top: 10px;
+      background-color: #151b54;
+  }
+  .container {
+      width: 500px;
+      margin: 0 auto;
+  }
+}

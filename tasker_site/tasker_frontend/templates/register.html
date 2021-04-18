@@ -1,0 +1,77 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+	<head>
+		<meta charset="utf-8" />
+		<title>Register Tasker</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+		<link rel="stylesheet" href="{% static 'css/register.css' %}" />
+
+	</head>
+	
+	<body>
+		<div class="contain">
+			<img src = "{% static 'images/logo.png' %}" alt = "School Logo"  width= "70px"  height="100px" align="left" style = "margin:10px 25px" >
+			
+			<div class="about">
+				<div class="uni">
+					<h1 style = "text-align: center; margin-right:100px";><strong>UNIVERSITY OF PERPETUAL HELP SYSTEM GMA</h1></strong>
+				</div>
+
+		 <p style = "text-align: center ; margin-right: 100px;">San Gabriel, General Mariano Alvarez (GMA), Cavite<br> Contact No. (0909) 809 - 4200  • (046) 460 -  4086  • (02)<br>email: guidance@gma.uphsl.edu.ph/ marketing@gma.uphsl.edu.ph<br> url: www.uphsl.edu.ph
+		 </p>
+		 
+		 </div>
+		 </div>
+		<div class="background">
+			<img src="{% static 'images/showcase2.jpg' %}" alt="background image" class="bg" />
+		</div>
+		<div class="center">
+			<div class="container">
+				
+				<div class="text"><b>Tasker Register </b></div>
+				<form action="#" onsubmit="return false;" id="register-form">
+
+					<!--email-->
+					<div class="data">
+						<label for="email">Email</label>
+						<input type="email" placeholder="Enter Email" name="email" required id="mail" />
+					</div>
+
+					<!-- username -->
+					<div class="data">
+						<label for="text">Username</label>
+						<input type="text" placeholder="Enter Username" name="username" required id="usrname" />
+					</div>
+
+					<!--password-->
+					<div class="data">
+						<label for="password">Password</label>
+						<input type="password" placeholder="Enter Password" name="password" required id="pw1" autocomplete="on" />
+					</div>
+					
+					<div class="data">
+						<label for="password-repeat">Retype Password</label>
+						<input type="password" placeholder="Retype Password" name="password-repeat" required id="pw2" autocomplete="on"/>
+					</div>
+					
+					<div class="button">
+						<div class="inner"></div>
+						<button type="submit" id="submitBtn">Register</button>
+					</div>
+
+				</form>
+			</div>
+		</div>
+
+		<!-- jQuery -->
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+		<!-- js-cookie -->
+		<script src="https://cdn.jsdelivr.net/npm/js-cookie@2.2.1/src/js.cookie.min.js"></script>
+		<!-- scripts  -->
+		<script src="{% static 'js/settings.js' %}"></script>
+		<script src="{% static 'js/register.js' %}"></script>
+		<script src="{% static 'js/login.js' %}"></script>
+	</body>
+</html>
