@@ -69,7 +69,6 @@ class ProjectCreateMutation(DjangoCreateMutation):
 class TeamCreateMutation(DjangoCreateMutation):
     class Meta:
         model = Team
-        login_required = True
 
 
 # Patch Mutations
@@ -86,8 +85,6 @@ class TeamPatchMutation(DjangoPatchMutation):
     
     @classmethod
     def mutate(cls, root, info, input, id):
-
-        print(input)
 
         team = Team.objects.filter(id=id)[0]
         user = User.objects.get(id=info.context.user.id)
@@ -144,6 +141,10 @@ class Query(UserQuery, MeQuery, graphene.ObjectType):
         pk=graphene.Int(required=True),
         token=graphene.String(required=True),
     )
+    teams_by_user = graphene.List(
+        TeamType,
+        pk=graphene.Int(required=True)
+    )
 
     @login_required
     def resolve_viewer(self, info, **kwargs):
@@ -153,6 +154,9 @@ class Query(UserQuery, MeQuery, graphene.ObjectType):
     def resolve_projects_by_user(root, info, pk, **kwargs):
         # get all projects that the user is a member
         return Project.objects.filter(members__id=pk)
+    
+    def resolve_teams_by_user(root, info, pk):
+        return Team.objects.filter(members__id=pk)
 
 
 class MyMutation(AuthMutation, graphene.ObjectType):
