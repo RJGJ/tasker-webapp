@@ -115,7 +115,6 @@ TEMPLATE_DIRS = (
 
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:8080',
-	'http://127.0.0.1:8000',
 ]
 
 CORS_ALLOW_METHODS = [
@@ -134,7 +133,10 @@ CORS_ALLOW_HEADERS = [
     'accept',
     'origin',
     'authorization',
+	'X-CSRFToken',
 ]
+
+CORS_EXPOSE_HEADERS = ["X-CSRFTOKEN"]
 
 GRAPHENE = {
     'SCHEMA': 'graphql_api.schema.schema',
@@ -158,7 +160,6 @@ GRAPHQL_JWT = {
 
 AUTHENTICATION_BACKENDS = [
 	'graphql_jwt.backends.JSONWebTokenBackend',
-	# 'graphql_auth.backends.GraphQLAuthBackend',
 	'django.contrib.auth.backends.ModelBackend',
 ]
 

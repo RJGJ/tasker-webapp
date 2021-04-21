@@ -16,7 +16,7 @@ class UserProfile(models.Model):
 
 class Team(models.Model):
 
-	name 		= models.CharField(max_length=254, null=False, default="Team name")
+	name 		= models.CharField(unique=True, max_length=254, null=False, default="Team name")
 	description = models.CharField(max_length=254, null=False, default="Team description")
 	email 		= models.EmailField(max_length=254)
 	members 	= models.ManyToManyField(User, related_name="members")
